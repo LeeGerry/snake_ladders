@@ -1,0 +1,23 @@
+syntax = "proto3";
+option java_package = "com.me.game";
+option java_multiple_files = true;
+
+// 骰子点数
+message Die {
+  int32 value = 1;
+}
+
+// 玩家
+message Player {
+  string name = 1;
+  int32 position = 2;
+}
+
+// 游戏状态
+message GameState {
+  repeated Player player = 1;
+}
+
+service GameService {
+  rpc roll(stream Die) returns (stream GameState);
+}
